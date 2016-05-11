@@ -1,11 +1,33 @@
 package snakecamel;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class SnakeCamelUtil {
-
+	public static void main(String[] args) {
+		String StoCexpected = "AbcDefGh";
+		String StoCactual = snakeToCamelcase("abc__def___gh");
+		assertThat(StoCactual, is(StoCexpected));
+		
+		String CtoSexpected = "abc_def_gh";
+		String CtoSactual = camelToSnakecase("AbcDefGh");
+		assertThat(CtoSactual, is(CtoSexpected));
+		
+		String Capexpected = "Xyz";
+		String Capactual = capitalize("xyz");
+		assertThat(Capactual, is(Capexpected));
+		
+		String unCexpected = "xyz";
+		String unCactual = uncapitalize("Xyz");
+		assertThat(unCactual, is(unCexpected));
+		
+		System.out.println("できてるよ！！");
+		
+	}
 	public static String snakeToCamelcase(String snake_case) {
 		String[] words = snake_case.split("_");//分割して、配列に単語を入れる
 
