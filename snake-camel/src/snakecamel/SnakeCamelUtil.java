@@ -1,25 +1,39 @@
 package snakecamel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SnakeCamelUtil {
 
 	public static String snakeToCamelcase(String snake_case) {
-		String[] words = snake_case.split("_");
+		String[] words = snake_case.split("_");//分割して、配列に単語を入れる
+
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < words.length; i++) { //-1消す
+		for (int i = 0; i < words.length; i++) { //[修正]-1消す
+			words = remove(words, "");
+			
 			sb.append(capitalize(words[i]));
 		}
 		return new String(sb);
 	}
 	 
+	private static String[] remove(String[] words, String str) {
+		// TODO Auto-generated method stub
+		List<String> temp = new ArrayList<String>(Arrays.asList(words));
+		temp.remove(str);
+		return temp.toArray(new String[0]);
+	}
+
 	public static String camelToSnakecase(String camelcase) {
 		StringBuilder sb = new StringBuilder();
 		int j = 0;
 		for (int i = 0; i < camelcase.length(); i++) {
 			char c = camelcase.charAt(i);
 			if (Character.isUpperCase(c)) {
-				if (j < i) {
-					sb.append(camelcase.substring(j+1, i));
-				}
+				if (j < i) { //[修正]
+					sb.append(camelcase.substring(j+1, i));//
+				} //[修正]
 				if (sb.length() > 0) {
 					sb.append("_");
 				}
@@ -29,7 +43,7 @@ public class SnakeCamelUtil {
 				j = i;
 			}
 		}
-		sb.append(camelcase.substring(j+1));
+		sb.append(camelcase.substring(j+1));//[修正]
 		return new String(sb);
 	}
 	

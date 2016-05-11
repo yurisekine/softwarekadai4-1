@@ -15,9 +15,10 @@ public class SnakeCamelTest {
 	public void snakeToCamelcaseテスト() {
 
 		SnakeCamelUtil util = new SnakeCamelUtil();
-		String expected = "AbcDefGhi";
-		String actual = util.snakeToCamelcase("abc_def_ghi");
-				
+		String expected = "AbcDefGh";
+		String actual = util.snakeToCamelcase("abc__def___gh");
+		//abc__def___gh → AbcDefGh
+		//_abc_def__ → AbcDef
 		//int expected = 35;
 	//	int actual = calc.multiply(5, 7);
 		assertThat(actual, is(expected));
@@ -27,8 +28,8 @@ public class SnakeCamelTest {
 	public void camelToSnakecaseテスト() {
 
 		SnakeCamelUtil util = new SnakeCamelUtil();
-		String expected = "abc_def_ghi";
-		String actual = util.camelToSnakecase("AbcDefGhi");
+		String expected = "abc_def_gh";
+		String actual = util.camelToSnakecase("AbcDefGh");
 		assertThat(actual, is(expected));
 	}
 	
